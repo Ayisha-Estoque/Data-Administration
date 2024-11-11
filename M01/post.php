@@ -6,7 +6,7 @@ if (isset($_POST['btnSubmitPost'])) {
     $content = $_POST['content'];
     $dateTime = $_POST['dateTime'];
     $privacy = $_POST['privacy'];
-    $isDeleted = $_POST['isDeleted']
+    $isDeleted = $_POST['isDeleted'];
     $firstname = $_POST['firstName'];
     $lastname = $_POST['lastName'];
     $cityName = $_POST['cityName'];
