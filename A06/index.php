@@ -4,7 +4,6 @@ include('connect.php');
 if (isset($_POST['btnDelete'])) {
     $postID = $_POST['id'];
 
-    // Delete from addresses table
     $deleteAddressQuery = "
         DELETE addresses 
         FROM addresses 
@@ -13,7 +12,6 @@ if (isset($_POST['btnDelete'])) {
         WHERE Posts.postID = '$postID'";
     mysqli_query($conn, $deleteAddressQuery);
 
-    // Delete from userinfo table
     $deleteUserInfoQuery = "
         DELETE userinfo 
         FROM userinfo
@@ -21,7 +19,6 @@ if (isset($_POST['btnDelete'])) {
         WHERE Posts.postID = '$postID'";
     mysqli_query($conn, $deleteUserInfoQuery);
 
-    // Delete from users table
     $deleteUsersQuery = "
         DELETE users 
         FROM users
@@ -29,17 +26,14 @@ if (isset($_POST['btnDelete'])) {
         WHERE Posts.postID = '$postID'";
     mysqli_query($conn, $deleteUsersQuery);
 
-    // Delete from Posts table
     $deletePostQuery = "DELETE FROM Posts WHERE postID = '$postID'";
     mysqli_query($conn, $deletePostQuery);
 
-    // Delete unused cities
     $deleteCityQuery = "
         DELETE FROM cities 
         WHERE cityID NOT IN (SELECT DISTINCT cityID FROM addresses)";
     mysqli_query($conn, $deleteCityQuery);
 
-    // Delete unused provinces
     $deleteProvinceQuery = "
         DELETE FROM provinces 
         WHERE provinceID NOT IN (SELECT DISTINCT provinceID FROM addresses)";
