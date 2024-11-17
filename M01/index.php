@@ -15,44 +15,51 @@ $result = executeQuery($query);
 
 <!doctype html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Post Management</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="icon" href="images\icon2.png">
 
     <style>
         body {
             background-color: #F0EAD6;
         }
-        .navbar{
+        .navbar {
             background-color: #4B4B4D;
             width: 100%;
             top: 0;
         }
-        .navbarHeader{
+
+        .navbarHeader {
             color: white;
             font-size: 24px;
-            text-decoration: none;
+            display: flex;
+            align-items: center;
         }
-        .container{
+
+        .navbarIcon {
+            width: 30px;
+            height: 30px;
+            margin-right: 8px;
+        }
+        .container {
             font-family: 'Roboto';
         }
-        .small-date {
+        .dateTime {
             font-size: 0.8rem;
             font-weight: 300;
         }
-        .privacy{
+        .privacy {
             font-size: 0.8rem;
-            font-weight: 300; 
+            font-weight: 300;
         }
-        .address{
+        .address {
             font-size: 13px;
-            font-weight: 400; 
+            font-weight: 400;
         }
-        .content{
+        .content {
             text-align: center;
             font-size: 17px;
             font-family: 'Poppins';
@@ -67,10 +74,9 @@ $result = executeQuery($query);
             background-color: #F9E6D7;
             transition: transform 0.2s, box-shadow 0.2s;
         }
-
         .card:hover {
             transform: scale(1.02);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); 
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
         }
         .footer {
             text-align: center;
@@ -79,20 +85,27 @@ $result = executeQuery($query);
             color: #1A1A2E;
             margin-top: 20px;
         }
-        
     </style>
 </head>
 
 <body>
 <nav class="navbar">
-  <div class="container-fluid">
-    <span class="navbarHeader">InstaStatus</span>
-  </div>
+    <div class="container-fluid">
+        <span class="navbarHeader">
+            <img src="images/pic.png" alt="Icon" class="navbarIcon">
+            InstaStatus
+        </span>
+    </div>
 </nav>
 
 <div class="container">
     <h1 class="header mt-5">Feed</h1>
     <div class="row">
+        <div class="d-flex justify-content-end mb-3">
+            <a href="post.php" class="btn btn-primary" style="background-color: #FF6F61; border: none;">
+                + Create Post
+            </a>
+        </div>
         <?php
         if (mysqli_num_rows($result) > 0) {
             while ($post = mysqli_fetch_assoc($result)) {
@@ -102,7 +115,7 @@ $result = executeQuery($query);
                         <div class="card-body">
                             <h5 class="card-title">
                                 <?php echo htmlspecialchars($post['firstname'] . ' ' . $post['lastname']); ?>
-                                <span class="small-date"> · <?php echo htmlspecialchars($post['dateTime']); ?></span>
+                                <span class="dateTime"> · <?php echo htmlspecialchars($post['dateTime']); ?></span>
                                 <span class="privacy"> · <?php echo htmlspecialchars($post['privacy']); ?></span>
                             </h5>
                             <p class="address"><?php echo htmlspecialchars($post['cityName'] . ', ' . $post['provinceName']); ?></p>
@@ -123,13 +136,9 @@ $result = executeQuery($query);
 </div>
 
 <div class="footer">
-        &copy; 2024 Ayisha | All Rights Reserved
-    </div>
+    &copy; 2024 Ayisha | All Rights Reserved
+</div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
-
 </html>
-
